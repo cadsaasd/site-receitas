@@ -12,9 +12,9 @@ def home(request):
         is_published=True
     ).order_by('-id')
 
-    current_page = request.GET.get('page')
+    current_page = request.GET.get('page', 1)
     paginator = Paginator(recipes, 9)
-    page_obj = paginator.get_page(1)
+    page_obj = paginator.get_page(current_page)
 
     return render(request, 'recipes/pages/home.html', context={
         'recipes': page_obj
