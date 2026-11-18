@@ -1,5 +1,7 @@
 from unittest import TestCase
 from utils.pagination import make_pagination_range
+from django.test import RequestFactory
+from utils.pagination import make_pagination
 
 
 class PaginationTest(TestCase):
@@ -108,3 +110,20 @@ class PaginationTest(TestCase):
             current_page=21,
         )['pagination']
         self.assertEqual([17, 18, 19, 20], pagination)
+
+
+class MakePaginationTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.items = list(range(1, 22))
+
+    def test_make_pagination_uses_page_one_when_page_is_invalid(self):
+        request = self.factory.get('/?page=abc')
+
+        page_obj, _ = make_pagination(
+            request,
+            self.items,
+            per_page=9
+        )
+
+        self.assertEqual(page_obj.number, 1)
