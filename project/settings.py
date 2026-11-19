@@ -131,10 +131,10 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-MASSAGES_TAGS = {
-    constants.DEBUG: 'massage-debug',
-    constants.ERROR: 'massage-error',
-    constants.INFO: 'massage-info',
-    constants.SUCCESS: 'massage-success',
-    constants.WARNING: 'massage-warning',
+MESSAGE_TAGS = {
+    constants.DEBUG: 'message-debug',
+    constants.ERROR: 'message-error',
+    constants.INFO: 'message-info',
+    constants.SUCCESS: 'message-success',
+    constants.WARNING: 'message-warning',
 }
